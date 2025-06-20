@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesignPrinciples", "DesignP
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OOP_Basics", "OOP_Basics\OOP_Basics.csproj", "{D9A1F6F5-D7E9-446B-A097-1D65BB83AB69}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SRP", "SRP\SRP.csproj", "{43AB0D2D-2CF8-4518-9EF0-6F6F74D64F7E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{D9A1F6F5-D7E9-446B-A097-1D65BB83AB69}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D9A1F6F5-D7E9-446B-A097-1D65BB83AB69}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D9A1F6F5-D7E9-446B-A097-1D65BB83AB69}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43AB0D2D-2CF8-4518-9EF0-6F6F74D64F7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43AB0D2D-2CF8-4518-9EF0-6F6F74D64F7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43AB0D2D-2CF8-4518-9EF0-6F6F74D64F7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43AB0D2D-2CF8-4518-9EF0-6F6F74D64F7E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
