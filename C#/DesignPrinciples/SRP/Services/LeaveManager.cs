@@ -9,6 +9,11 @@ namespace SRP.Services
         private readonly List<LeaveRequest> _leaveRequests = new();
         public LeaveRequest SubmitLeave(Employee employee, LeaveType type, int days)
         {
+            if(employee is ContractEmployee && type != LeaveType.Unpaid)
+            {
+                Console.WriteLine($"{employee.GetType().Name} cannot apply for {type} leave.");
+                return null;
+            }
             var request = new LeaveRequest(employee.Id, type, days);
             _leaveRequests.Add(request);
 

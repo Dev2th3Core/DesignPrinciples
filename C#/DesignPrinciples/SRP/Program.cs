@@ -21,7 +21,7 @@ namespace SRP
             emp2.DisplayDetails();
 
             // Contract Employee (no leave for now)
-            var contractEmp = new ContractEmployee("Noah");
+            var contractEmp = new ContractEmployee("Noah") { ManagerId = manager.Id };
             contractEmp.DisplayDetails();
 
             // Leave Manager
@@ -50,19 +50,24 @@ namespace SRP
             // Leave Request: emp1 - Paid, emp2 - Casual
             var leave1 = leaveManager.SubmitLeave(emp1, LeaveType.Paid, 2);
             var leave2 = leaveManager.SubmitLeave(emp2, LeaveType.Casual, 1);
+            var leave3 = leaveManager.SubmitLeave(contractEmp, LeaveType.Paid, 1); // Contract employee requesting paid leave (should fail)
+            var leave4 = leaveManager.SubmitLeave(contractEmp, LeaveType.Unpaid, 3); // Contract employee requesting unpaid leave
             Console.WriteLine();
 
             // Manager Approves Leaves
             leaveManager.ApproveLeave(manager, emp1, leave1.RequestId, true);
-            Console.WriteLine($"{emp1.Name} Leave Status: {leave1.Status}");
+            Console.WriteLine($"{emp1.Name} Leave Type: {leave1.LeaveType} Leave Status: {leave1.Status}");
             leaveManager.ApproveLeave(manager, emp2, leave2.RequestId, false);
-            Console.WriteLine($"{emp2.Name} Leave Status: {leave2.Status}");
+            Console.WriteLine($"{emp2.Name} Leave Type: {leave2.LeaveType} Leave Status: {leave2.Status}");
+            leaveManager.ApproveLeave(manager, contractEmp, leave4.RequestId, true);
+            Console.WriteLine($"{contractEmp.Name} Leave Type: {leave4.LeaveType} Leave Status: {leave4.Status}");
             Console.WriteLine();
 
             // Leave Balance Check
             Console.WriteLine("-- Leave Balance After Approval --");
             Console.WriteLine($"{emp1.Name} Paid Leave Left: {emp1.LeaveBalance.PaidLeaveRemaining}");
             Console.WriteLine($"{emp2.Name} Casual Leave Left: {emp2.LeaveBalance.CasualLeaveRemaining}");
+            Console.WriteLine($"{contractEmp.Name} Unpaid Leave Left: {contractEmp.LeaveBalance.UnPaidLeaveRemaining}");
 
             Console.WriteLine("\n========= SRP DEMO END =========");
         }
