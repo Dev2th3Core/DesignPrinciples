@@ -2,9 +2,8 @@
 {
     public class PermanentEmployee : Employee
     {
-
-        public PermanentEmployee(string name)
-            : base(name)
+        public PermanentEmployee(string name, LeaveBalance leaveBalance)
+            : base(name, leaveBalance)
         {
         }
 

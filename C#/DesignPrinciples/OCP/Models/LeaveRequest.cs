@@ -8,7 +8,7 @@ namespace OCP.Models
         public Guid EmployeeId { get; set; }
         public LeaveType LeaveType { get; set; }
         public int DaysRequested { get; set; }
-        public string Status { get; set; } // "Pending", "Approved", "Rejected"
+        public LeaveStatus Status { get; set; }
         public Guid? ApprovedById { get; set; }
         public DateTime RequestedOn { get; set; }
         public DateTime? ApprovedOn { get; set; }
@@ -19,7 +19,7 @@ namespace OCP.Models
             EmployeeId = employeeId;
             LeaveType = type;
             DaysRequested = days;
-            Status = "Pending";
+            Status = LeaveStatus.Pending;
             RequestedOn = DateTime.Now;
         }
     }

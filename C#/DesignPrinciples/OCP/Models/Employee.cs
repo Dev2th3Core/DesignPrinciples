@@ -39,12 +39,13 @@
             }
         }
 
-        public LeaveBalance LeaveBalance { get; set; } = new LeaveBalance();
+        public LeaveBalance LeaveBalance { get; set; }
 
-        protected Employee(string name)
+        protected Employee(string name, LeaveBalance leaveBalance)
         {
             Id = Guid.NewGuid();
             Name = name;
+            LeaveBalance = leaveBalance;
         }
 
         public abstract void DisplayDetails();

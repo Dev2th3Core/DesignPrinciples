@@ -12,17 +12,17 @@ namespace OCP
             Console.WriteLine("========= OCP DEMO START =========\n");
 
             // Manager
-            var manager = new PermanentEmployee("Olivia");
+            var manager = new PermanentEmployee("Olivia", new PermanentEmployeeLeaveBalance());
             manager.DisplayDetails();
 
             // Permanent Employees
-            var emp1 = new PermanentEmployee("Liam") { ManagerId = manager.Id };
+            var emp1 = new PermanentEmployee("Liam", new PermanentEmployeeLeaveBalance()) { ManagerId = manager.Id };
             emp1.DisplayDetails();
-            var emp2 = new PermanentEmployee("Ava") { ManagerId = manager.Id };
+            var emp2 = new PermanentEmployee("Ava", new PermanentEmployeeLeaveBalance()) { ManagerId = manager.Id };
             emp2.DisplayDetails();
 
             // Contract Employee (no leave for now)
-            var contractEmp = new ContractEmployee("Noah");
+            var contractEmp = new ContractEmployee("Noah", new ContractEmployeeLeaveBalance()) { ManagerId = manager.Id };
             contractEmp.DisplayDetails();
 
 
@@ -36,13 +36,13 @@ namespace OCP
             };
 
             // Register strategies
-            var strategyList = new List<ISalaryCalculator>
+            var salaryStrategyList = new List<ISalaryCalculator>
             {
                 new PermanentSalaryCalculator(),
                 new ContractSalaryCalculator()
             };
 
-            var calculator = new SalaryCalculationManager(strategyList);
+            var calculator = new SalaryCalculationManager(salaryStrategyList);
 
             // Print salaries
             Console.WriteLine("-- Salaries --");
@@ -51,25 +51,36 @@ namespace OCP
             Console.WriteLine($"{emp2.Name}: ${calculator.CalculateSalary(emp2, salaries[emp2.Id])}");
             Console.WriteLine($"{contractEmp.Name}: ${calculator.CalculateSalary(contractEmp, salaries[contractEmp.Id])}");
             
-            // Leave Manager
-            var leaveManager = new LeaveManager();
+            var leaveStrategyList = new List<ILeaveManager>
+            {
+                new PermanentLeaveManager(),
+                new ContractLeaveManager()
+            };
 
-            // Leave Request: emp1 - Paid, emp2 - Casual
+            // Leave Manager
+            var leaveManager = new LeaveManager(leaveStrategyList);
+
+            // Leave Request: emp1 - Paid, emp2 - Casual, contractEmp - Unpaid
             var leave1 = leaveManager.SubmitLeave(emp1, LeaveType.Paid, 2);
             var leave2 = leaveManager.SubmitLeave(emp2, LeaveType.Casual, 1);
+            var leave3 = leaveManager.SubmitLeave(contractEmp, LeaveType.Paid, 3); // Contract employee requesting Paid leave (should fail)
+            var leave4 = leaveManager.SubmitLeave(contractEmp, LeaveType.Unpaid, 5); // Contract employee requesting Unpaid leave
             Console.WriteLine();
 
             // Manager Approves Leaves
             leaveManager.ApproveLeave(manager, emp1, leave1.RequestId, true);
-            Console.WriteLine($"{emp1.Name} Leave Status: {leave1.Status}");
-            leaveManager.ApproveLeave(manager, emp2, leave2.RequestId, false);
-            Console.WriteLine($"{emp2.Name} Leave Status: {leave2.Status}");
+            Console.WriteLine($"{emp1.Name} Leave Type: {leave1.LeaveType} Leave Status: {leave1.Status}");
+            leaveManager.ApproveLeave(manager, emp2, leave2.RequestId, true);
+            Console.WriteLine($"{emp2.Name} Leave Type: {leave2.LeaveType} Leave Status: {leave2.Status}");
+            leaveManager.ApproveLeave(manager, contractEmp, leave4.RequestId, true);
+            Console.WriteLine($"{contractEmp.Name} Leave Type: {leave4.LeaveType} Leave Status: {leave4.Status}");
             Console.WriteLine();
 
             // Leave Balance Check
             Console.WriteLine("-- Leave Balance After Approval --");
-            Console.WriteLine($"{emp1.Name} Paid Leave Left: {emp1.LeaveBalance.PaidLeaveRemaining}");
-            Console.WriteLine($"{emp2.Name} Casual Leave Left: {emp2.LeaveBalance.CasualLeaveRemaining}");
+            Console.WriteLine($"{emp1.Name} Paid Leave Left: {emp1.LeaveBalance.GetLeaveBalance(LeaveType.Paid)}");
+            Console.WriteLine($"{emp2.Name} Casual Leave Left: {emp2.LeaveBalance.GetLeaveBalance(LeaveType.Casual)}");
+            Console.WriteLine($"{contractEmp.Name} Unpaid Leave Left: {contractEmp.LeaveBalance.GetLeaveBalance(LeaveType.Unpaid)}");
 
             Console.WriteLine("\n========= OCP DEMO END =========");
         }

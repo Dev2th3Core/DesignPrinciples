@@ -4,64 +4,39 @@ using OCP.Models;
 
 namespace OCP.Services
 {
-    public class LeaveManager : ILeaveManager
+    public class LeaveManager
     {
-        private readonly List<LeaveRequest> _leaveRequests = new();
+        private List<ILeaveManager> _leaveStrategyList;
+
+        public LeaveManager(List<ILeaveManager> leaveStrategyList)
+        {
+            _leaveStrategyList = leaveStrategyList;
+        }
+
         public LeaveRequest SubmitLeave(Employee employee, LeaveType type, int days)
         {
-            var request = new LeaveRequest(employee.Id, type, days);
-            _leaveRequests.Add(request);
-
-            Console.WriteLine($"{employee.Name} requested {days} day(s) of {type} leave. Request ID: {request.RequestId}");
-            return request;
+            var strategy = GetStrategy(employee);
+            return strategy.SubmitLeave(employee, type, days);
         }
 
         public void CancelLeave(Guid requestId, Employee employee)
         {
-            _leaveRequests.RemoveAll(r => r.RequestId == requestId && r.EmployeeId == employee.Id && r.Status == "Pending");
-            Console.WriteLine($"Leave request with ID {requestId} has been cancelled by {employee.Name}.");
+            var strategy = GetStrategy(employee);
+            strategy.CancelLeave(requestId, employee);
         }
 
         public bool ApproveLeave(Employee manager, Employee subordinate, Guid requestId, bool approveLeave)
         {
-            if (subordinate.ManagerId != manager.Id)
-            {
-                Console.WriteLine($"{manager.Name} is not authorized to approve leave for {subordinate.Name}.");
-                return false;
-            }
+            var strategy = GetStrategy(subordinate);
+            return strategy.ApproveLeave(manager, subordinate, requestId, approveLeave);
+        }
 
-            if (!approveLeave)
-            {
-                Console.WriteLine($"{manager.Name} rejected the leave request for {subordinate.Name}.");
-                return false;
-            }
-
-            var request = _leaveRequests.FirstOrDefault(r =>
-                r.RequestId == requestId &&
-                r.EmployeeId == subordinate.Id &&
-                r.Status == "Pending");
-
-            if (request == null)
-            {
-                Console.WriteLine($"No pending request with ID {requestId} found for {subordinate.Name}.");
-                return false;
-            }
-
-            bool success = subordinate.LeaveBalance.DeductLeave(request.LeaveType, request.DaysRequested);
-            if (success)
-            {
-                request.Status = "Approved";
-                request.ApprovedById = manager.Id;
-                request.ApprovedOn = DateTime.Now;
-
-                Console.WriteLine($"{manager.Name} approved {request.DaysRequested} day(s) of {request.LeaveType} leave for {subordinate.Name}.");
-            }
-            else
-            {
-                Console.WriteLine($"{subordinate.Name} does not have enough leave balance.");
-            }
-
-            return success;
+        private ILeaveManager GetStrategy(Employee employee)
+        {
+            var strategy = _leaveStrategyList.FirstOrDefault(s => s.Supports(employee));
+            if (strategy == null)
+                throw new InvalidOperationException("No leave strategy found for this employee type.");
+            return strategy;
         }
     }
 }
