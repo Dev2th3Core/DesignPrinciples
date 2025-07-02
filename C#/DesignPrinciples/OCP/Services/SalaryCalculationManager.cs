@@ -14,11 +14,19 @@ namespace OCP.Services
 
         public double CalculateSalary(Employee employee, SalaryDetails salary)
         {
-            var strategy = _strategies.FirstOrDefault(s => s.Supports(employee));
+            var strategy = GetStrategy(employee);
             if (strategy == null)
                 throw new InvalidOperationException("No salary strategy found for this employee type.");
 
             return strategy.Calculate(salary);
+        }
+
+        private ISalaryCalculator GetStrategy(Employee employee)
+        {
+            var strategy = _strategies.FirstOrDefault(s => s.Supports(employee));
+            if (strategy == null)
+                throw new InvalidOperationException("No salary strategy found for this employee type.");
+            return strategy;
         }
     }
 }
