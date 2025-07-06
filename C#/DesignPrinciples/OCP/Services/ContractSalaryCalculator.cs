@@ -1,6 +1,4 @@
-﻿
-
-using OCP.Interfaces;
+﻿using OCP.Interfaces;
 using OCP.Models;
 
 namespace OCP.Services
