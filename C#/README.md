@@ -19,16 +19,16 @@ If you need a refresher on OOP, check out the [Object-Oriented Programming in C#
 
 ## Getting Started
 
-1. [Project Structure](../docs/project-structure.md)
-2. [Setup Guide](../docs/setup.md)
+1. [Project Structure](./docs/project-structure.md)
+2. [Setup Guide](./docs/setup.md)
 
 ## Core Concepts & Principles
 
-1. [Single Responsibility Principle (SRP)](../docs/srp.md)
-2. [Open/Closed Principle (OCP)](../docs/ocp.md)
-3. [Liskov Substitution Principle (LSP)](../docs/lsp.md)
-4. [Interface Segregation Principle (ISP)](../docs/isp.md)
-5. [Dependency Inversion Principle (DIP)](../docs/dip.md)
+1. [Single Responsibility Principle (SRP)](./docs/srp.md)
+2. [Open/Closed Principle (OCP)](./docs/ocp.md)
+3. [Liskov Substitution Principle (LSP)](./docs/lsp.md)
+4. [Interface Segregation Principle (ISP)](./docs/isp.md)
+5. [Dependency Inversion Principle (DIP)](./docs/dip.md)
 
 ## Contributing
 
