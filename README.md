@@ -1,10 +1,23 @@
 # Design Principles Learning Project
 
-This project is a continuation of [oop](https://github.com/Rakshit4045/oop) projects. If you haven’t explored it yet, be sure to check it out. It is a comprehensive resource for learning and practicing Design Principles (SOLID Principles) concepts across multiple programming languages.
+> **Note:** This repository specifically focuses on the SOLID principles, which are a subset of software design principles. While there are many design principles in software engineering, this project is dedicated to providing practical examples and documentation for the SOLID principles only.
+
+This project is a continuation of [oop](https://github.com/Rakshit4045/oop) projects. If you haven’t explored it yet, be sure to check it out. It is a comprehensive resource for learning and practicing SOLID Principles concepts across multiple programming languages.
+
+## What are SOLID Principles?
+
+**SOLID** is an acronym for five key object-oriented design principles that help developers create more maintainable, flexible, and scalable software:
+- **S**: Single Responsibility Principle (SRP)
+- **O**: Open/Closed Principle (OCP)
+- **L**: Liskov Substitution Principle (LSP)
+- **I**: Interface Segregation Principle (ISP)
+- **D**: Dependency Inversion Principle (DIP)
+
+These principles are widely regarded as best practices for designing robust and extensible object-oriented systems.
 
 ## Project Overview
-- **Goal:** Provide clear, practical, and modern examples of Design Principles concepts (SRP, OCP, LSP, ISP, DIP) in various languages.
-- **Audience:** Beginners and intermediate learners who want to understand and apply Design Principles in real-world scenarios.
+- **Goal:** Provide clear, practical, and modern examples of SOLID principles (SRP, OCP, LSP, ISP, DIP) in various languages.
+- **Audience:** Beginners and intermediate learners who want to understand and apply SOLID principles in real-world scenarios.
 
 ## Supported Languages
 - **C#** (current):
