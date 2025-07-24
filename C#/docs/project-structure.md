@@ -1,6 +1,6 @@
 # Project Structure
 
-This document explains the organization of the DesignPrinciples project and how different software design principles are implemented in C#.
+This document explains the organization of the DesignPrinciples project and how the SOLID software design principles are implemented in C#.
 
 ## Directory Structure
 
@@ -16,23 +16,22 @@ C#/DesignPrinciples/
 │   ├── Program.cs                            # SRP demo entry point
 │   ├── SRP.csproj                            # SRP project file
 │   ├── Enums/                                # Supporting enums
-│   │   └── LeaveType.cs
-│   ├── Interfaces/                           # Interfaces for SRP
-│   │   ├── ILeaveManager.cs
-│   │   └── ISalaryCalculator.cs
+│   ├── Interfaces/                           # Interface definitions
 │   ├── Models/                               # Data models
-│   │   ├── ContractEmployee.cs
-│   │   ├── Employee.cs
-│   │   ├── LeaveBalance.cs
-│   │   ├── LeaveRequest.cs
-│   │   ├── PermanentEmployee.cs
-│   │   └── SalaryDetails.cs
 │   └── Services/                             # Service implementations
-│       ├── LeaveManager.cs
-│       └── SalaryCalculator.cs
-└── docs/                                     # Documentation
+├── OCP/                                      # Open/Closed Principle
+│   └── ... (same structure as SRP)
+├── LSP/                                      # Liskov Substitution Principle
+│   └── ... (same structure as SRP)
+├── ISP/                                      # Interface Segregation Principle
+│   └── ... (same structure as SRP)
+├── DIP/                                      # Dependency Inversion Principle
+│   └── ... (same structure as SRP)
+└── docs/                                     # Documentation for all the Principles
     └── ...
 ```
+
+> **Note:** Each SOLID principle project (OCP, LSP, ISP, DIP) follows the same internal folder structure as SRP, containing subfolder for Enums, Interfaces, Models, and Services as appropriate. While the DIP project additionally contains Repository folder.
 
 ## Code Organization
 
@@ -47,18 +46,37 @@ C#/DesignPrinciples/
 - Location: `OOP_Basics/`
 - Purpose: Contains foundational OOP concept examples for reference
 - Files: Examples of encapsulation, abstraction, polymorphism, inheritance, and interfaces
+- **Revisit** - [OOP Basics](../docs/oop.md)
 
 ### Single Responsibility Principle (SRP)
 - Location: `SRP/`
 - Purpose: Demonstrates the Single Responsibility Principle
-- Structure:
-  - `Program.cs`: Entry point for SRP examples
-  - `Enums/`: Contains supporting enums (e.g., `LeaveType.cs`)
-  - `Interfaces/`: Interface definitions for SRP (e.g., `ILeaveManager.cs`, `ISalaryCalculator.cs`)
-  - `Models/`: Data models used in SRP examples
-  - `Services/`: Service classes implementing business logic
+- Structure: Interfaces, models, enums, and services for SRP
+- **Start here: [Single Responsibility Principle](../docs/srp.md)**
 
-**Start here: [Single Responsibility Principle](../docs/srp.md)**
+### Open/Closed Principle (OCP)
+- Location: `OCP/`
+- Purpose: Demonstrates the Open/Closed Principle
+- Structure: Interfaces, models, enums, and services for OCP
+- **Learn more: [Open/Closed Principle](../docs/ocp.md)**
+
+### Liskov Substitution Principle (LSP)
+- Location: `LSP/`
+- Purpose: Demonstrates the Liskov Substitution Principle
+- Structure: Interfaces, models, enums, and services for LSP
+- **Learn more: [Liskov Substitution Principle](../docs/lsp.md)**
+
+### Interface Segregation Principle (ISP)
+- Location: `ISP/`
+- Purpose: Demonstrates the Interface Segregation Principle
+- Structure: Interfaces, models, enums, and services for ISP
+- **Learn more: [Interface Segregation Principle](../docs/isp.md)**
+
+### Dependency Inversion Principle (DIP)
+- Location: `DIP/`
+- Purpose: Demonstrates the Dependency Inversion Principle
+- Structure: Interfaces, models, enums, repositories, and services for DIP
+- **Learn more: [Dependency Inversion Principle](../docs/dip.md)**
 
 ## Implementation Pattern
 
@@ -67,20 +85,24 @@ Each design principle follows a consistent pattern:
 2. Interfaces define contracts for services
 3. Models represent data structures
 4. Services implement business logic, adhering to the principle being demonstrated
+5. Supporting enums and repositories as needed
 
 ## Progressive Learning
 
 The project is designed for progressive learning:
 1. Start with [Single Responsibility Principle](../docs/srp.md)
-2. Continue with other SOLID principles as they are added (OCP, LSP, ISP, DIP)
-3. Refer to OOP_Basics for foundational concepts
+2. Continue with [Open/Closed Principle](../docs/ocp.md)
+3. Move to [Liskov Substitution Principle](../docs/lsp.md)
+4. Explore [Interface Segregation Principle](../docs/isp.md)
+5. Finish with [Dependency Inversion Principle](../docs/dip.md)
+6. Refer to [OOP_Basics](../docs/oop.md) for foundational concepts
 
 Each principle builds upon OOP fundamentals, with practical examples and real-world scenarios.
 
 ## Running Examples
 
 To run examples:
-1. Open the relevant `Program.cs` (e.g., in `SRP/`)
+1. Open the relevant `Program.cs` (e.g., in `SRP/`, `OCP/`, etc.)
 2. Uncomment or modify the example you want to run
 3. Run the application using:
    ```bash
@@ -98,4 +120,4 @@ To run examples:
 
 ## Next Steps
 
-Ready to start learning? Begin with [Single Responsibility Principle](../docs/srp.md) and follow the learning path as new principles are added. Each section contains detailed explanations, examples, and best practices to help you master software design principles in C#.
+Ready to start learning? Begin with [Single Responsibility Principle](../docs/srp.md) and follow the learning path through all SOLID principles. Each section contains detailed explanations, examples, and best practices to help you master SOLID software design principles in C#.
