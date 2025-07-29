@@ -30,7 +30,7 @@ There, the `Employee` class was a “jack of all trades.” It handled:
 Here’s what that means:  
 If you wanted to change how salaries are calculated, you’d have to touch the `Employee` class.  
 If you wanted to update leave policies, you’d have to touch the same class again.  
-This is a classic SRP violation—one class, too many reasons to change!
+This is a classic SRP violation, one class, too many reasons to change!
 
 ## How do we fix this? (SRP in action)
 
@@ -48,7 +48,7 @@ This makes the code easier to maintain, test, and extend.
 
 ## Best Practices
 
-- Keep your classes focused—one responsibility per class.
+- Keep your classes focused, one responsibility per class.
 - If you find yourself changing a class for more than one reason, consider splitting it.
 - Use clear naming to reflect each class’s responsibility.
 - Favor composition over inheritance for separating concerns.

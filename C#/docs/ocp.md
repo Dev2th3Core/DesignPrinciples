@@ -36,7 +36,7 @@ We refactored the code to follow the Open/Closed Principle by introducing clear 
   - Introduced the `ISalaryCalculator` interface to define a contract for salary calculation.
   - Created separate classes for each employee type, such as `PermanentSalaryCalculator` and `ContractSalaryCalculator`, each implementing `ISalaryCalculator`.
   - The `SalaryCalculationManager` delegates the calculation to the appropriate implementation based on employee type.
-  - **Result:** To add a new salary policy or employee type, simply implement a new class—no changes to existing, tested code.
+  - **Result:** To add a new salary policy or employee type, simply implement a new class, no changes to existing, tested code.
 
 ### OCP in Leave Management
 

@@ -10,8 +10,8 @@ Thank you for your interest in contributing! This project aims to provide clear,
 
 ### 2. Follow the Folder Structure
 Each language folder should have:
-- `docs/` — Documentation and learning path for that language
-- `DesignPrinciples/` — Code implementations for each Design Principle concept
+- `docs/` : Documentation and learning path for that language
+- `DesignPrinciples/` : Code implementations for each Design Principle concept
 
 ### 3. Documentation Guidelines
 - Write beginner-friendly explanations with real-world analogies
